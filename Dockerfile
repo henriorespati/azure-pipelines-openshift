@@ -19,5 +19,5 @@ FROM base AS final
 ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
 WORKDIR /opt/app-root/app
 COPY --from=publish /opt/app-root/app/publish .
-user root
+
 ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
