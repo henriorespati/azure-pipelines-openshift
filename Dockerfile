@@ -9,7 +9,6 @@ ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
 WORKDIR /opt/app-root/src
 
 RUN dotnet restore "DotNet.Docker.csproj"
-COPY --chown=1001:0 . /opt/app-root/src
 WORKDIR /opt/app-root/src
 RUN dotnet build "DotNet.Docker.csproj" -c Release -o /opt/app-root/app/build
 
@@ -20,4 +19,5 @@ FROM base AS final
 ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
 WORKDIR /opt/app-root/app
 COPY --from=publish /opt/app-root/app/publish .
+user root
 ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
