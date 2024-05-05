@@ -8,7 +8,6 @@ RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/m
 ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
 WORKDIR /opt/app-root/src
 
-COPY --chown=1001:0 DotNet.Docker.csproj /opt/app-root/src
 RUN dotnet restore "DotNet.Docker.csproj"
 COPY --chown=1001:0 . /opt/app-root/src
 WORKDIR /opt/app-root/src
@@ -21,5 +20,4 @@ FROM base AS final
 ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
 WORKDIR /opt/app-root/app
 COPY --from=publish /opt/app-root/app/publish .
-USER 1001
 ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
