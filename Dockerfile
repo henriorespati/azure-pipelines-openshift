@@ -2,6 +2,10 @@ FROM registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0 AS base
 WORKDIR /opt/app-root/app
 EXPOSE 80
 
+ENV _BUILDAH_STARTED_IN_USERNS="" \
+    BUILDAH_ISOLATION=chroot \
+    STORAGE_driver=vfs
+
 RUN usermod --add-subuids 100000-165535 default && \
     usermod --add-subgids 100000-165535 default && \
     setcap cap_setuid+eip /usr/bin/newuidmap && \
