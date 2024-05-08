@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: pbb-pool
+  name: pbb-poc-pool
 
 variables:
   project-name-dev: 'ado-openshift'
