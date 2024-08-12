@@ -1,4 +1,5 @@
 FROM registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0 AS base
+USER root
 WORKDIR /opt/app-root/app
 EXPOSE 80
 
