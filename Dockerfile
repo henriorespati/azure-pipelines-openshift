@@ -1,9 +1,9 @@
-FROM registry.access.redhat.com/ubi8/dotnet-60-runtime:6.0 AS base
+FROM registry.access.redhat.com/ubi8/dotnet-60-runtime:latest AS base
 
 WORKDIR /opt/app-root/app
 EXPOSE 80
 
-FROM registry.access.redhat.com/ubi8/dotnet-60:6.0 AS build
+FROM registry.access.redhat.com/ubi8/dotnet-60:latest AS build
 RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | sh
 
 ENV ASPNETCORE_ENVIRONMENT "OPENSHIFT"
